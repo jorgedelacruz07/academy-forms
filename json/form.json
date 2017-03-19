@@ -1,0 +1,65 @@
+{
+  "question1": {
+    "type": "multiple",
+    "value": "¿Cómo te gustaría llamarte?",
+    "answers": {
+      "values": [
+        {
+          "answer": "Jorge",
+          "is_answer": "true"
+        },
+        {
+          "answer": "Prudencio"
+        },
+        {
+          "answer": "Ezequiel",
+          "is_answer": "true"
+        },
+        {
+          "answer": "Hola"
+        }
+      ]
+    }
+  },
+
+  "question2": {
+    "type": "simple",
+    "value": "¿Cuál es tu nombre?",
+    "answers": {
+      "values": [
+        {
+          "answer": "Jorge",
+          "is_answer": "true"
+        },
+        {
+          "answer": "Angela"
+        },
+        {
+          "answer": "Luis"
+        },
+        {
+          "answer": "Sonia"
+        },
+        {
+          "answer": "Miguel"
+        }
+      ]
+    }
+  },
+
+  "question3": {
+    "type": "simple",
+    "value": "¿Qué cursos te gustaría llevar este ciclo?",
+    "answers": {
+      "values": [
+        {
+          "answer": "Matemática",
+          "is_answer": "true"
+        },
+        {
+          "answer": "Lenguaje"
+        }
+      ]
+    }
+  }
+}
