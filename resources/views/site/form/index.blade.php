@@ -5,18 +5,26 @@
 @section('content')
 
   @if (Session::has('succes_message'))
-    <div class="uk-alert-success" uk-alert>
-      <a class="uk-alert-close" uk-close></a>
-      <p>
-        {!! session('succes_message') !!}
-      </p>
+    <div class="" uk-grid>
+      <div class="uk-width-1-3 uk-align-center">
+        <div class="uk-alert-success" uk-alert>
+          <a class="uk-alert-close" uk-close></a>
+          <p>
+            {!! session('succes_message') !!}
+          </p>
+        </div>
+      </div>
     </div>
   @elseif (Session::has('wrong_message'))
-    <div class="uk-alert-danger" uk-alert>
-      <a class="uk-alert-close" uk-close></a>
-      <p>
-        {!! session('wrong_message') !!}
-      </p>
+    <div class="" uk-grid>
+      <div class="uk-width-1-3 uk-align-center">
+        <div class="uk-alert-danger" uk-alert>
+          <a class="uk-alert-close" uk-close></a>
+          <p>
+            {!! session('wrong_message') !!}
+          </p>
+        </div>
+      </div>
     </div>
   @endif
 

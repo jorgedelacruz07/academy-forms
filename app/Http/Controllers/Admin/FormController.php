@@ -123,46 +123,54 @@ class FormController extends Controller
     $answerArray = array();
     $count_ans = 1;
     $ans = 'answer'.$count_ans;
-    foreach ($data as $section_key => $section) {
-      if ($section->type == 'multiple') {
-        $corrects = $section->answers->corrects;
-        $i = 0;
-        $cant_request = count($request->$ans);
-        if($cant_request == $corrects){
-          foreach ($section->answers->values as $values) {
-            if ($values->is_answer && $cant_request!=0) {
-              if($values->answer == $request->$ans[$i]){
-                $corrects--;
-                $cant_request--;
+    if($request->$ans!=null){
+      foreach ($data as $section_key => $section) {
+        if ($section->type == 'multiple') {
+          $corrects = $section->answers->corrects;
+          $i = 0;
+          $cant_request = count($request->$ans);
+          if($cant_request == $corrects){
+            foreach ($section->answers->values as $values) {
+              if ($values->is_answer && $cant_request!=0) {
+                if($values->answer == $request->$ans[$i]){
+                  $corrects--;
+                  $cant_request--;
+                }
+                $i++;
               }
-              $i++;
             }
           }
-        }
-        if ($corrects == 0) {
-          array_push($answerArray, 1);
+          if ($corrects == 0) {
+            array_push($answerArray, 1);
+          }else {
+            array_push($answerArray, 0);
+          }
         }else {
-          array_push($answerArray, 0);
-        }
-      }else {
-        foreach ($section->answers->values as $values) {
-          if ($values->is_answer) {
-            if($values->answer == $request->$ans){
-              array_push($answerArray, 1);
-            }else{
-              array_push($answerArray, 0);
+          foreach ($section->answers->values as $values) {
+            if ($values->is_answer) {
+              if($values->answer == $request->$ans){
+                array_push($answerArray, 1);
+              }else{
+                array_push($answerArray, 0);
+              }
             }
           }
+        }
+        $count_ans++;
+        $ans = 'answer'.$count_ans;
+      }
+      $num_ans = $this->numCorrectAnswers($answerArray);
+      if($num_ans == 0){
+        \Session::flash('succes_message', 'Ha respondido correctamente.');
+      }else{
+        if($num_ans == 1){
+          \Session::flash('wrong_message', 'Se ha equivocado en <strong>'.$num_ans.' pregunta.</strong>');
+        }else {
+          \Session::flash('wrong_message', 'Se ha equivocado en <strong>'.$num_ans.' preguntas.</strong>');
         }
       }
-      $count_ans++;
-      $ans = 'answer'.$count_ans;
-    }
-    $num_ans = $this->numCorrectAnswers($answerArray);
-    if($num_ans == 0){
-      \Session::flash('succes_message', 'Ha respondido correctamente');
     }else{
-      \Session::flash('wrong_message', 'Se ha equivocado en '.$num_ans.' preguntas');
+      // \Session::flash('wrong_message', 'No ha respondido ninguna pregunta');
     }
     return redirect('/form');
   }
