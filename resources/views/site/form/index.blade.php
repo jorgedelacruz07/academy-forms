@@ -4,6 +4,22 @@
 
 @section('content')
 
+  @if (Session::has('succes_message'))
+    <div class="uk-alert-success" uk-alert>
+      <a class="uk-alert-close" uk-close></a>
+      <p>
+        {!! session('succes_message') !!}
+      </p>
+    </div>
+  @elseif (Session::has('wrong_message'))
+    <div class="uk-alert-danger" uk-alert>
+      <a class="uk-alert-close" uk-close></a>
+      <p>
+        {!! session('wrong_message') !!}
+      </p>
+    </div>
+  @endif
+
   <div class="uk-article">
     <h1 class="uk-article-title uk-text-center uk-text-uppercase">Formularios</h1>
     <p>

@@ -3,20 +3,23 @@
     "type": "multiple",
     "value": "¿Cómo te gustaría llamarte?",
     "answers": {
+      "corrects": 2,
       "values": [
         {
           "answer": "Jorge",
-          "is_answer": "true"
+          "is_answer": true
         },
         {
-          "answer": "Prudencio"
+          "answer": "Prudencio",
+          "is_answer": false
         },
         {
           "answer": "Ezequiel",
-          "is_answer": "true"
+          "is_answer": true
         },
         {
-          "answer": "Hola"
+          "answer": "Hola",
+          "is_answer": false
         }
       ]
     }
@@ -29,19 +32,23 @@
       "values": [
         {
           "answer": "Jorge",
-          "is_answer": "true"
+          "is_answer": true
         },
         {
-          "answer": "Angela"
+          "answer": "Angela",
+          "is_answer": false
         },
         {
-          "answer": "Luis"
+          "answer": "Luis",
+          "is_answer": false
         },
         {
-          "answer": "Sonia"
+          "answer": "Sonia",
+          "is_answer": false
         },
         {
-          "answer": "Miguel"
+          "answer": "Miguel",
+          "is_answer": false
         }
       ]
     }
@@ -54,10 +61,11 @@
       "values": [
         {
           "answer": "Matemática",
-          "is_answer": "true"
+          "is_answer": true
         },
         {
-          "answer": "Lenguaje"
+          "answer": "Lenguaje",
+          "is_answer": false
         }
       ]
     }

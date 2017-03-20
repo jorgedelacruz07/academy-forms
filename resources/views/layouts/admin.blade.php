@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="/uikit/css/uikit.min.css" />
   <link rel="stylesheet" href="/css/master.css" />
 
+  <link rel="shortcut icon" href="/images/favicon.ico">
+
   <!-- Scripts -->
   <script src="/js/jquery.min.js"></script>
   <script src="/uikit/js/uikit.min.js"></script>

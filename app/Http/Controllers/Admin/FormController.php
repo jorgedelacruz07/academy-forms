@@ -116,9 +116,71 @@ class FormController extends Controller
     return redirect('/admin/form');
   }
 
-  public function validateAnswer($slug){
+  public function validateAnswer(Request $request, $slug){
     $form = Form::where('slug', $slug)->first();
-    
+    $data = $form->data;
+    $data = json_decode($form->data);
+    $answerArray = array();
+    $count_ans = 1;
+    $ans = 'answer'.$count_ans;
+    foreach ($data as $section_key => $section) {
+      if ($section->type == 'multiple') {
+        $corrects = $section->answers->corrects;
+        $i = 0;
+        $cant_request = count($request->$ans);
+        if($cant_request == $corrects){
+          foreach ($section->answers->values as $values) {
+            if ($values->is_answer && $cant_request!=0) {
+              if($values->answer == $request->$ans[$i]){
+                $corrects--;
+                $cant_request--;
+              }
+              $i++;
+            }
+          }
+        }
+        if ($corrects == 0) {
+          array_push($answerArray, 1);
+        }else {
+          array_push($answerArray, 0);
+        }
+      }else {
+        foreach ($section->answers->values as $values) {
+          if ($values->is_answer) {
+            if($values->answer == $request->$ans){
+              array_push($answerArray, 1);
+            }else{
+              array_push($answerArray, 0);
+            }
+          }
+        }
+      }
+      $count_ans++;
+      $ans = 'answer'.$count_ans;
+    }
+    $num_ans = $this->numCorrectAnswers($answerArray);
+    if($num_ans == 0){
+      \Session::flash('succes_message', 'Ha respondido correctamente');
+    }else{
+      \Session::flash('wrong_message', 'Se ha equivocado en '.$num_ans.' preguntas');
+    }
     return redirect('/form');
+  }
+
+  public function numCorrectAnswers($answer_array){
+    $count = count($answer_array);
+    $count_correct = 0;
+    for ($i=0; $i < $count; $i++) {
+      if($answer_array[$i]==1){
+        $count_correct++;
+      }
+    }
+    if($count_correct == $count){
+      // return true;
+      return 0;
+    }else {
+      // return false;
+      return $count-$count_correct;
+    }
   }
 }

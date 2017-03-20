@@ -28,13 +28,13 @@
                   @if ($section->type == 'multiple')
                     <div class="uk-margin">
                       @foreach($section->answers->values as $values)
-                        <label><input class="uk-checkbox" type="checkbox" name="answer{{ $number }}[]"> {{ $values->answer }}</label><br>
+                        <label><input class="uk-checkbox" type="checkbox" name="answer{{ $number }}[]" value="{{ $values->answer }}"> {{ $values->answer }}</label><br>
                       @endforeach
                     </div>
                   @else
                     <div class="uk-margin">
                       @foreach($section->answers->values as $values)
-                        <label><input class="uk-radio" type="radio" name="answer{{ $number }}"> {{ $values->answer }}</label><br>
+                        <label><input class="uk-radio" type="radio" name="answer{{ $number }}" value="{{ $values->answer }}"> {{ $values->answer }}</label><br>
                       @endforeach
                     </div>
                   @endif
