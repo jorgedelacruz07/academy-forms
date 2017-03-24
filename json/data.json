@@ -1,0 +1,14 @@
+{
+  "users": [
+    {
+      "name": "Jorge de la Cruz",
+      "email": "jdelacruzp7@gmail.com",
+      "password": "password"
+    },
+    {
+      "name": "Jorge Prodequa",
+      "email": "jorge@prodequa.com",
+      "password": "password"
+    }
+  ]
+}
