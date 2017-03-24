@@ -13,14 +13,18 @@
 
 Auth::routes();
 
-Route::group(['prefix' => 'admin'], function () {
-  Route::get('/', 'Admin\AdminController@index');
-  Route::resource('/form', 'Admin\FormController', ['except' => [
+Route::group([
+  'namespace' => 'Admin',
+  'prefix' => 'admin',
+  'middleware' => 'auth'
+], function () {
+  Route::get('/', 'AdminController@index');
+  Route::resource('/form', 'FormController', ['except' => [
     'show'
   ]]);
-  Route::get('/form/{slug}', 'Admin\FormController@show');
-  Route::post('/form/{slug}/validate', 'Admin\FormController@validateAnswer');
-  Route::resource('/area', 'Admin\AreaController');
+  Route::get('/form/{slug}', 'FormController@show');
+  Route::post('/form/{slug}/validate', 'FormController@validateAnswer');
+  Route::resource('/area', 'AreaController');
 });
 
 Route::resource('/', 'Site\SiteController', ['only' => [
