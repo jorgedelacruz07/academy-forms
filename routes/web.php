@@ -19,23 +19,18 @@ Route::group([
   'middleware' => 'auth'
 ], function () {
   Route::get('/', 'AdminController@index');
-  Route::resource('/form', 'FormController', ['except' => [
-    'show'
-  ]]);
+  Route::resource('/form', 'FormController', ['except' => ['show']]);
   Route::get('/form/{slug}', 'FormController@show');
   Route::post('/form/{slug}/validate', 'FormController@validateAnswer');
   Route::resource('/area', 'AreaController');
 });
 
-Route::resource('/', 'Site\SiteController', ['only' => [
-  'index'
-]]);
-Route::resource('/form', 'Site\FormController', ['only' => [
-  'index'
-]]);
-Route::get('/form/{slug}', 'Site\FormController@show');
-
-Route::resource('/area', 'Site\AreaController', ['only' => [
-  'index'
-]]);
-Route::get('/area/{slug}', 'Site\AreaController@show');
+Route::group([
+  'namespace' => 'Site',
+], function(){
+  Route::resource('/', 'SiteController', ['only' => ['index']]);
+  Route::resource('/form', 'FormController', ['only' => ['index']]);
+  Route::get('/form/{slug}', 'FormController@show');
+  Route::resource('/area', 'AreaController', ['only' => ['index']]);
+  Route::get('/area/{slug}', 'AreaController@show');
+});
